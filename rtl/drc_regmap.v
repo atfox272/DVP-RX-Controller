@@ -175,15 +175,15 @@ module drc_regmap #(
 
     // Deflatten signals
 generate
-    for (i = 0; i < RW_REG_NUM; i = i + 1) begin
+    for (i = 0; i < RW_REG_NUM; i = i + 1) begin    : RW_REG_FLAT
         assign rw_reg[i] = rw_reg_flat[(i+1)*S_DATA_W-1 -: S_DATA_W];
     end
 
-    for (i = 0; i < RO_REG_NUM; i = i + 1) begin
+    for (i = 0; i < RO_REG_NUM; i = i + 1) begin    : RO_REG_FLAT
         assign ro_reg_flat[(i+1)*S_DATA_W-1 -: S_DATA_W] = ro_reg[i];
     end
 
-    for (i = 0; i < RW1S_REG_NUM; i = i + 1) begin
+    for (i = 0; i < RW1S_REG_NUM; i = i + 1) begin  : RW1S_REG_FLAT
         assign rw1s_rd_dat[i] = rw1s_rd_dat_flat[(i+1)*S_DATA_W-1 -: S_DATA_W];
     end
 endgenerate 
