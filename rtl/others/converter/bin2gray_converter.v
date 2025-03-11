@@ -11,7 +11,7 @@ module bin2gray_converter
 
     // Combinational logic
     generate
-        for(idx = 0; idx < DATA_WIDTH; idx = idx + 1) begin
+        for(idx = 0; idx < DATA_WIDTH; idx = idx + 1) begin : GRAY_LOGIC_GEN
             if(idx == DATA_WIDTH - 1) begin
                 assign gray_o[idx] = bin_i[idx];
             end
