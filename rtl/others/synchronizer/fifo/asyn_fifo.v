@@ -119,7 +119,7 @@ module asyn_fifo
         end
         // -- Write domain
         // -- -- Write pointer updater
-        always @(posedge clk_wr_domain) begin
+        always @(posedge clk_wr_domain or negedge rst_n) begin
             if(!rst_n) begin 
                 wr_addr <= {ADDR_OVF_WIDTH{1'b0}};        
             end
@@ -128,7 +128,7 @@ module asyn_fifo
             end
         end
         // -- -- Write pointer (gray encoding)
-        always @(posedge clk_wr_domain) begin
+        always @(posedge clk_wr_domain or negedge rst_n) begin
             if(!rst_n) begin 
                 wr_addr_gray <= {ADDR_OVF_WIDTH{1'b0}};        
             end
@@ -139,7 +139,7 @@ module asyn_fifo
         // -- -- Read pointer synchronizer
         for(sync_ff_idx = 0; sync_ff_idx < NUM_SYNC_FF; sync_ff_idx = sync_ff_idx + 1) begin : MULT_FF_RD_SYNC
             if(sync_ff_idx == 0) begin
-                always @(posedge clk_wr_domain) begin
+                always @(posedge clk_wr_domain or negedge rst_n) begin
                     if(!rst_n) begin 
                         rd_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -149,7 +149,7 @@ module asyn_fifo
                 end
             end
             else begin
-                always @(posedge clk_wr_domain) begin
+                always @(posedge clk_wr_domain or negedge rst_n) begin
                     if(!rst_n) begin 
                         rd_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -162,7 +162,7 @@ module asyn_fifo
         
         // -- Read domain
         // -- -- Read pointer updater
-        always @(posedge clk_rd_domain) begin
+        always @(posedge clk_rd_domain or negedge rst_n) begin
             if(!rst_n) begin
                 rd_addr <= {ADDR_OVF_WIDTH{1'b0}};
             end
@@ -171,7 +171,7 @@ module asyn_fifo
             end
         end
         // -- -- Read pointer (gray encoding)
-        always @(posedge clk_rd_domain) begin
+        always @(posedge clk_rd_domain or negedge rst_n) begin
             if(!rst_n) begin
                 rd_addr_gray <= {ADDR_OVF_WIDTH{1'b0}};
             end
@@ -182,7 +182,7 @@ module asyn_fifo
         // -- -- Write pointer synchronizer
         for(sync_ff_idx = 0; sync_ff_idx < NUM_SYNC_FF; sync_ff_idx = sync_ff_idx + 1) begin : MULT_FF_WR_SYNC
             if(sync_ff_idx == 0) begin
-                always @(posedge clk_rd_domain) begin
+                always @(posedge clk_rd_domain or negedge rst_n) begin
                     if(!rst_n) begin
                         wr_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -192,7 +192,7 @@ module asyn_fifo
                 end
             end
             else begin
-                always @(posedge clk_rd_domain) begin
+                always @(posedge clk_rd_domain or negedge rst_n) begin
                     if(!rst_n) begin
                         wr_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -303,7 +303,7 @@ module asyn_fifo
         end
         // -- Write domain
         // -- -- Write pointer updater
-        always @(posedge clk_wr_domain) begin
+        always @(posedge clk_wr_domain or negedge rst_n) begin
             if(!rst_n) begin 
                 wr_addr <= {ADDR_OVF_WIDTH{1'b0}};        
             end
@@ -312,7 +312,7 @@ module asyn_fifo
             end
         end
         // -- -- Status updater
-        always @(posedge clk_wr_domain) begin
+        always @(posedge clk_wr_domain or negedge rst_n) begin
             if(!rst_n) begin 
                 full_o_q <= 1'b0;
             end
@@ -320,7 +320,7 @@ module asyn_fifo
                 full_o_q <= full_o_d;
             end
         end
-        always @(posedge clk_wr_domain) begin
+        always @(posedge clk_wr_domain or negedge rst_n) begin
             if(!rst_n) begin 
                 wr_ready_o_q <= 1'b1;
             end
@@ -329,7 +329,7 @@ module asyn_fifo
             end
         end
         // -- -- Write pointer (gray encoding)
-        always @(posedge clk_wr_domain) begin
+        always @(posedge clk_wr_domain or negedge rst_n) begin
             if(!rst_n) begin 
                 wr_addr_gray <= {ADDR_OVF_WIDTH{1'b0}};        
             end
@@ -340,7 +340,7 @@ module asyn_fifo
         // -- -- Read pointer synchronizer
         for(sync_ff_idx = 0; sync_ff_idx < NUM_SYNC_FF; sync_ff_idx = sync_ff_idx + 1) begin : MULT_FF_RD_SYNC
             if(sync_ff_idx == 0) begin
-                always @(posedge clk_wr_domain) begin
+                always @(posedge clk_wr_domain or negedge rst_n) begin
                     if(!rst_n) begin 
                         rd_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -350,7 +350,7 @@ module asyn_fifo
                 end
             end
             else begin
-                always @(posedge clk_wr_domain) begin
+                always @(posedge clk_wr_domain or negedge rst_n) begin
                     if(!rst_n) begin 
                         rd_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -372,7 +372,7 @@ module asyn_fifo
             end
         end
         // -- -- Read pointer updater
-        always @(posedge clk_rd_domain) begin
+        always @(posedge clk_rd_domain or negedge rst_n) begin
             if(!rst_n) begin
                 rd_addr <= {ADDR_OVF_WIDTH{1'b0}};
             end
@@ -381,7 +381,7 @@ module asyn_fifo
             end
         end
         // -- -- Status updater
-        always @(posedge clk_rd_domain) begin
+        always @(posedge clk_rd_domain or negedge rst_n) begin
             if(!rst_n) begin
                 empty_o_q <= 1'b1;
             end
@@ -389,7 +389,7 @@ module asyn_fifo
                 empty_o_q <= empty_d;
             end
         end
-        always @(posedge clk_rd_domain) begin
+        always @(posedge clk_rd_domain or negedge rst_n) begin
             if(!rst_n) begin
                 rd_ready_o_q <= 1'b0;
             end
@@ -399,7 +399,7 @@ module asyn_fifo
         end
         
         // -- -- Read pointer (gray encoding)
-        always @(posedge clk_rd_domain) begin
+        always @(posedge clk_rd_domain or negedge rst_n) begin
             if(!rst_n) begin
                 rd_addr_gray <= {ADDR_OVF_WIDTH{1'b0}};
             end
@@ -410,7 +410,7 @@ module asyn_fifo
         // -- -- Write pointer synchronizer
         for(sync_ff_idx = 0; sync_ff_idx < NUM_SYNC_FF; sync_ff_idx = sync_ff_idx + 1) begin : MULT_FF_WR_SYNC
             if(sync_ff_idx == 0) begin
-                always @(posedge clk_rd_domain) begin
+                always @(posedge clk_rd_domain or negedge rst_n) begin
                     if(!rst_n) begin
                         wr_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end
@@ -420,7 +420,7 @@ module asyn_fifo
                 end
             end
             else begin
-                always @(posedge clk_rd_domain) begin
+                always @(posedge clk_rd_domain or negedge rst_n) begin
                     if(!rst_n) begin
                         wr_addr_meta[sync_ff_idx] <= {ADDR_OVF_WIDTH{1'b0}};
                     end

@@ -17,6 +17,11 @@ module dvp_rx_controller #(
     // DVP configuration
     parameter DVP_DATA_W        = 8,
     parameter DVP_FIFO_D        = 4,   // DVP FIFO depth 
+    parameter DVP_CAPTURE_TYPE  = "PCLK_EDGE", // "ASYNC_FIFO": Use asynchronous FIFO to capture data || "PCLK_EDGE": Synchronize rising egde of PCLK to capture the data
+    /*
+    + With the "ASYNC_FIFO" capture type, the controller can support higher frequency on the DVP interface. However, you should ONLY use PCLK as an external clock for the controller if you make sure that the PCLK connection is dedicated for a clock line.
+    + With the "PCLK_EDGE" capture type, the controller operates more stably but at lower speed than the "ASYNC_FIFO" capture type.
+    */
     // Image 
     parameter PXL_GRAYSCALE     = 1,    // Resize (Pixel Grayscale) - 0: DISABLE || 1 : ENABLE 
     parameter FRM_DOWNSCALE     = 1,    // Resize (Frame Downscale) - 0: DISABLE || 1 : ENABLE
@@ -209,6 +214,7 @@ module dvp_rx_controller #(
     // -- DVP Data FIFO
     drc_dvp_data_fifo #(
         .DVP_DATA_W         (DVP_DATA_W),
+        .DVP_CAPTURE_TYPE   (DVP_CAPTURE_TYPE),
         .PXL_INFO_W         (PXL_INFO_W),
         .PXL_FIFO_D         (DVP_FIFO_D)
     ) ddf (
