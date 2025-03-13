@@ -4,3 +4,6 @@
 [submodule "rtl/common"]
 	path = rtl/common
 	url = https://github.com/atfox272/hdl-common.git
+[submodule "ip/dispatch"]
+	path = ip/dispatch
+	url = https://github.com/atfox272/AXI4-Interconnect.git
