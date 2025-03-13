@@ -1,0 +1,6 @@
+[submodule "ip/dma"]
+	path = ip/dma
+	url = https://github.com/atfox272/dma.git
+[submodule "rtl/common"]
+	path = rtl/common
+	url = https://github.com/atfox272/hdl-common.git
