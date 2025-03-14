@@ -118,8 +118,8 @@ module dvp_rx_controller #(
     wire    [IMG_DIM_W-1:0]     img_width;      // Image width
     wire    [IMG_DIM_W-1:0]     img_height;     // Image height
     // Interrupt and Trap
-    wire                        int_dma_irq     [0:0];
-    wire                        int_dma_trap    [0:0];
+    wire                        int_dma_irq;
+    wire                        int_dma_trap;
     // Pixel FIFO -> DRC Control State
     wire    [PXL_INFO_W-1:0]    pxl_info_dat;
     wire                        pxl_info_vld;
@@ -537,8 +537,8 @@ module dvp_rx_controller #(
         .s_ARVALID_o        (flat_s_arvalid),
         .s_RREADY_o         (flat_s_rready)
     );
-    assign dma_irq  = int_dma_irq[0];
-    assign dma_trap = int_dma_trap[0];
+    assign dma_irq  = int_dma_irq;
+    assign dma_trap = int_dma_trap;
     // Flatten
     assign {s_awid[1],       s_awid[0]}     = flat_s_awid;
     assign {s_awaddr[1],     s_awaddr[0]}   = flat_s_awaddr;

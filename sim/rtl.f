@@ -1,5 +1,4 @@
 ./../rtl/*.v
-./../rtl/*.sv
 
 ./../ip/dma/axi_dma/rtl/*.sv
 ./../ip/dispatch/rtl/*.v
@@ -11,6 +10,6 @@
 ./../rtl/common/edgedet/*.v
 ./../rtl/common/fifo/sync_fifo/*.v
 ./../rtl/common/fifo/async_fifo/*.v
-./../rtl/common/reorder_buffer/*.sv
+./../rtl/common/reorder_buffer/*.v
 ./../rtl/common/skid_buffer/*.v
 ./../rtl/common/splitter/*.v
