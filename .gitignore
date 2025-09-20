@@ -2,3 +2,4 @@ dvp_rx_controller*/
 testcase*
 vivado/
 sim/dvp_rx_controller
+script/output

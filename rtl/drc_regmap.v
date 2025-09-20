@@ -69,7 +69,7 @@ module drc_regmap #(
     localparam RO_REG_ADDR      = DRC_BASE_ADDR + 32'h0000_0020;    // Read only registers
     localparam RW_REG_NUM       = 16;     // 16 RW registers (use 6/16 registers) - Detail in specification
     localparam RW1S_REG_NUM     = 1;      // 1/1 RW1S register - Detail in specification
-    localparam RO_REG_NUM       = 16;     // 16 RO registers (use 2/16 registers) - Detail in specification
+    localparam RO_REG_NUM       = 2;      // 2 RO registers (use 2/2 registers) - Detail in specification
     localparam RW1S_REG_OFFSET  = 1;
 
     // Internal variables
